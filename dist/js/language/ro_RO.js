@@ -20,6 +20,9 @@
             more: 'Te rog alege maxim %s optiuni',
             between: 'Te rog alege %s - %s optiuni'
         },
+        color: {
+            'default': 'Te rog sa introduci o culoare valida'
+        },
         creditCard: {
             'default': 'Te rog introdu un numar de card valid'
         },
@@ -30,7 +33,10 @@
             'default': 'Te rog introdu un numar CVV valid'
         },
         date: {
-            'default': 'Te rog introdu o data valida'
+            'default': 'Te rog introdu o data valida',
+            min: 'Te rog sa introduci o data dupa %s',
+            max: 'Te rog sa introduci o data inainte de %s',
+            range: 'Te rog sa introduci o data in intervalul %s - %s'
         },
         different: {
             'default': 'Te rog sa introduci o valoare diferita'
@@ -85,7 +91,7 @@
                 CR: 'Costa Rica',
                 CV: 'Cape Verde',
                 CY: 'Cipru',
-                CZ: 'Cehia',
+                CZ: 'Republica Cehia',
                 DE: 'Germania',
                 DK: 'Danemarca',
                 DO: 'Dominica',
@@ -157,7 +163,7 @@
                 CH: 'Elvetia',
                 CL: 'Chile',
                 CN: 'China',
-                CZ: 'Cehia',
+                CZ: 'Republica Cehia',
                 DK: 'Danemarca',
                 EE: 'Estonia',
                 ES: 'Spania',
@@ -232,6 +238,7 @@
             countries: {
                 BR: 'Brazilia',
                 CN: 'China',
+                CZ: 'Republica Cehia',
                 DK: 'Danemarca',
                 ES: 'Spania',
                 FR: 'Franta',
@@ -240,6 +247,7 @@
                 PK: 'Pakistan',
                 RO: 'Romania',
                 RU: 'Rusia',
+                SK: 'Slovacia',
                 TH: 'Thailanda',
                 US: 'SUA',
                 VE: 'Venezuela'
@@ -294,7 +302,7 @@
                 BR: 'Brazilia',
                 CH: 'Elvetia',
                 CY: 'Cipru',
-                CZ: 'Cehia',
+                CZ: 'Republica Cehia',
                 DE: 'Germania',
                 DK: 'Danemarca',
                 EE: 'Estonia',
@@ -337,6 +345,7 @@
             countries: {
                 BR: 'Brazilia',
                 CA: 'Canada',
+                CZ: 'Republica Cehia',
                 DK: 'Danemarca',
                 GB: 'Regatul Unit',
                 IT: 'Italia',
@@ -346,6 +355,7 @@
                 RU: 'Rusia',
                 SE: 'Suedia',
                 SG: 'Singapore',
+                SK: 'Slovacia',
                 US: 'SUA'
             }
         }

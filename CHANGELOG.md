@@ -1,6 +1,47 @@
 # Change Log
 
-## v0.5.2 (not released yet)
+## v0.5.3 (not released yet)
+
+__New Features__
+* [#807](https://github.com/nghuuphuoc/bootstrapvalidator/issues/807), [#821](https://github.com/nghuuphuoc/bootstrapvalidator/pull/821): Add ```min```, ```max``` options for the [date](http://bootstrapvalidator.com/validators/date/) validator, thanks to [@Arkni](https://github.com/Arkni)
+* [#822](https://github.com/nghuuphuoc/bootstrapvalidator/pull/822): Add color validator, thanks to [@emilchristensen](https://github.com/emilchristensen)
+* [#844](https://github.com/nghuuphuoc/bootstrapvalidator/pull/844), [#874](https://github.com/nghuuphuoc/bootstrapvalidator/pull/874): The [stringLength](http://bootstrapvalidator.com/validators/stringLength/) validator adds option to evaluate length in UTF-8 bytes, thanks to [@thx2001r](https://github.com/thx2001r)
+
+__Document__
+* [#848](https://github.com/nghuuphuoc/bootstrapvalidator/pull/848): Update the [stringLength](http://bootstrapvalidator.com/validators/stringLength) document, thanks to [@Relequestual](https://github.com/Relequestual)
+* [#912](https://github.com/nghuuphuoc/bootstrapvalidator/issues/912): Add [Using language package](http://bootstrapvalidator.com/examples/using-language-package/) example
+* [#920](https://github.com/nghuuphuoc/bootstrapvalidator/issues/920), [#929](https://github.com/nghuuphuoc/bootstrapvalidator/pull/929), [#936](https://github.com/nghuuphuoc/bootstrapvalidator/pull/936): Update the [Changing the tooltip, popover's position](http://bootstrapvalidator.com/examples/tooltip-popover-position/) example, thanks to [@Arkni](https://github.com/Arkni)
+* [#979](https://github.com/nghuuphuoc/bootstrapvalidator/issues/979): Add [Rails usage](http://bootstrapvalidator.com/validators/stringLength/#using-with-rails-form) for stringLength validator
+
+__Language Packages__
+* [#827](https://github.com/nghuuphuoc/bootstrapvalidator/pull/827): Update Dutch language package, thanks to [@JvanderHeide](https://github.com/JvanderHeide)
+* [#829](https://github.com/nghuuphuoc/bootstrapvalidator/pull/829): Update Swedish language package, thanks to [@ulsa](https://github.com/ulsa)
+* [#834](https://github.com/nghuuphuoc/bootstrapvalidator/pull/834): Update Ukrainian and Russian language packages, thanks to [@oleg-voloshyn](https://github.com/oleg-voloshyn)
+* [#835](https://github.com/nghuuphuoc/bootstrapvalidator/pull/835): Update Belgium (French) language package, thanks to [@neilime](https://github.com/neilime)
+* [#836](https://github.com/nghuuphuoc/bootstrapvalidator/pull/836): Update French language package, thanks to [@neilime](https://github.com/neilime)
+* [#837](https://github.com/nghuuphuoc/bootstrapvalidator/pull/837): Update Bulgarian language package, thanks to [@mraiur](https://github.com/mraiur)
+* [#846](https://github.com/nghuuphuoc/bootstrapvalidator/pull/846): Update simplified Chinese language package, thanks to [@shamiao](https://github.com/shamiao)
+* [#849](https://github.com/nghuuphuoc/bootstrapvalidator/pull/849): Update Serbian language package, thanks to [@markocrni](https://github.com/markocrni)
+* [#850](https://github.com/nghuuphuoc/bootstrapvalidator/issues/850), [#851](https://github.com/nghuuphuoc/bootstrapvalidator/pull/851): Update Danish language package, thanks to [@Djarnis](https://github.com/Djarnis)
+* [#869](https://github.com/nghuuphuoc/bootstrapvalidator/pull/869): Update Polish language package, thanks to [@grzesiek](https://github.com/grzesiek)
+* [#870](https://github.com/nghuuphuoc/bootstrapvalidator/pull/870): Update Traditional Chinese language package, thanks to [@tureki](https://github.com/tureki)
+* [#871](https://github.com/nghuuphuoc/bootstrapvalidator/pull/871): Update Czech language package, thanks to [@cuchac](https://github.com/cuchac)
+* [#872](https://github.com/nghuuphuoc/bootstrapvalidator/pull/872): Update Indonesian language package, thanks to [@egig](https://github.com/egig)
+* [#879](https://github.com/nghuuphuoc/bootstrapvalidator/pull/879): Update Romanian language package, thanks to [@filipac](https://github.com/filipac)
+* [#880](https://github.com/nghuuphuoc/bootstrapvalidator/pull/880): Update Belgium (Dutch) language package, thanks to [@dokterpasta](https://github.com/dokterpasta)
+* [#881](https://github.com/nghuuphuoc/bootstrapvalidator/pull/881): Update Italian language package, thanks to [@maramazza](https://github.com/maramazza)
+* [#882](https://github.com/nghuuphuoc/bootstrapvalidator/pull/882): Update Spanish language package, thanks to [@vadail](https://github.com/vadail)
+* [#891](https://github.com/nghuuphuoc/bootstrapvalidator/pull/891): Update Portuguese (Brazil) language package, thanks to [@dgmike](https://github.com/dgmike)
+* [#900](https://github.com/nghuuphuoc/bootstrapvalidator/pull/900): Update Persian (Farsi) language package, thanks to [@i0](https://github.com/i0)
+* [#903](https://github.com/nghuuphuoc/bootstrapvalidator/pull/903): Update Hungarian language package, thanks to [@blackfyre](https://github.com/blackfyre)
+* [#910](https://github.com/nghuuphuoc/bootstrapvalidator/pull/910): Update Greek language package, thanks to [@pRieStaKos](https://github.com/pRieStaKos)
+* [#913](https://github.com/nghuuphuoc/bootstrapvalidator/pull/913): Update Thai language package, thanks to [@figgaro](https://github.com/figgaro)
+* [#915](https://github.com/nghuuphuoc/bootstrapvalidator/pull/915): Update Turkish language package, thanks to [@CeRBeR666](https://github.com/CeRBeR666)
+* [#961](https://github.com/nghuuphuoc/bootstrapvalidator/pull/961): Update Chilean Spanish language package, thanks to [@marceloampuerop6](https://github.com/marceloampuerop6)
+* [#967](https://github.com/nghuuphuoc/bootstrapvalidator/pull/967): Add Hebrew language package, thanks to [@yakidahan](https://github.com/yakidahan)
+* [#974](https://github.com/nghuuphuoc/bootstrapvalidator/pull/974): Add Albanian language package, thanks to [@desaretiuss](https://github.com/desaretiuss)
+
+## v0.5.2 (2014-09-25)
 
 __New Features__
 * [#480](https://github.com/nghuuphuoc/bootstrapvalidator/pull/480): Add ```verbose``` option, thanks to [@mbezhanov](https://github.com/mbezhanov)
@@ -16,6 +57,7 @@ __New Features__
 * [#793](https://github.com/nghuuphuoc/bootstrapvalidator/pull/793), [#798](https://github.com/nghuuphuoc/bootstrapvalidator/pull/798): Add Chinese citizen ID validator, thanks to [@shamiao](https://github.com/shamiao)
 * [#802](https://github.com/nghuuphuoc/bootstrapvalidator/pull/802): Add Russia phone number validator, thanks to [@cylon-v](https://github.com/cylon-v). [#816](https://github.com/nghuuphuoc/bootstrapvalidator/pull/816): Improved by [@stepin](https://github.com/stepin)
 * [#816](https://github.com/nghuuphuoc/bootstrapvalidator/pull/816): Add Russian postal code validator, thanks to [@stepin](https://github.com/stepin)
+* [#867](https://github.com/nghuuphuoc/bootstrapvalidator/pull/867): Add Czech and Slovakia phone number and postal code validators, thanks to [@cuchac](https://github.com/cuchac)
 
 __Changes__
 * [#753](https://github.com/nghuuphuoc/bootstrapvalidator/issues/753): Change the default type of [remote](http://bootstrapvalidator.com/validators/remote/) validator to GET
@@ -52,6 +94,8 @@ The tooltip/popover is shown automatically when the field gets the focus, thanks
 
 __Document__
 * [#709](https://github.com/nghuuphuoc/bootstrapvalidator/issues/709), [#715](https://github.com/nghuuphuoc/bootstrapvalidator/pull/715): Add [Bootstrap Select](http://bootstrapvalidator.com/examples/bootstrap-select/) and [Select2](http://bootstrapvalidator.com/examples/select2/) examples, thanks to [@Arkni](https://github.com/Arkni)
+* [#855](https://github.com/nghuuphuoc/bootstrapvalidator/issues/855), [#858](https://github.com/nghuuphuoc/bootstrapvalidator/pull/858): Add [TinyMCE](http://bootstrapvalidator.com/examples/tinymce/) example, thanks to [@Arkni](https://github.com/Arkni)
+* [#859](https://github.com/nghuuphuoc/bootstrapvalidator/issues/859), [#862](https://github.com/nghuuphuoc/bootstrapvalidator/issues/862), [#865](https://github.com/nghuuphuoc/bootstrapvalidator/pull/865): Add [Changing tooltip/popover position](http://bootstrapvalidator.com/examples/tooltip-popover-position/) example, thanks to [@Arkni](https://github.com/Arkni)
 
 __Language Packages__
 * [#706](https://github.com/nghuuphuoc/bootstrapvalidator/pull/706): Japanese language package, thanks to [@tsuyoshifujii](https://github.com/tsuyoshifujii)
@@ -65,6 +109,8 @@ __Language Packages__
 * [#802](https://github.com/nghuuphuoc/bootstrapvalidator/pull/802): Russian language package, thanks to [@cylon-v](https://github.com/cylon-v). [#816](https://github.com/nghuuphuoc/bootstrapvalidator/pull/816): Improved by [@stepin](https://github.com/stepin)
 * [#806](https://github.com/nghuuphuoc/bootstrapvalidator/pull/806): Ukrainian language package, thanks to [@oleg-voloshyn](https://github.com/oleg-voloshyn)
 * [#840](https://github.com/nghuuphuoc/bootstrapvalidator/pull/840): Serbian language package, thanks to [@markocrni](https://github.com/markocrni)
+* [#856](https://github.com/nghuuphuoc/bootstrapvalidator/pull/856): Norwegian language package, thanks to [@trondulseth](https://github.com/trondulseth)
+* [#868](https://github.com/nghuuphuoc/bootstrapvalidator/pull/868): Indonesian language package, thanks to [@egig](https://github.com/egig)
 
 ## v0.5.1 (2014-08-22)
 

@@ -20,6 +20,9 @@
             more: 'Kies maximaal %s opties',
             between: 'Kies tussen de %s - %s opties'
         },
+        color: {
+            'default': 'Voer een geldige kleurcode in'
+        },
         creditCard: {
             'default': 'Voer een geldig creditcardnummer in'
         },
@@ -30,7 +33,10 @@
             'default': 'Voer een geldig CVV-nummer in'
         },
         date: {
-            'default': 'Voer een geldige datum in'
+            'default': 'Voer een geldige datum in',
+            min: 'Voer een datum in die na %s ligt',
+            max: 'Voer een datum in die vóór %s ligt',
+            range: 'Voer een datum in die tussen %s en %s ligt'
         },
         different: {
             'default': 'Voer een andere waarde in'
@@ -85,7 +91,7 @@
                 CR: 'Costa Rica',
                 CV: 'Cape Verde',
                 CY: 'Cyprus',
-                CZ: 'Tsjechië',
+                CZ: 'Tsjechische Republiek',
                 DE: 'Duitsland',
                 DK: 'Denemarken',
                 DO: 'Dominicaanse Republiek',
@@ -157,7 +163,7 @@
                 CH: 'Zwitserland',
                 CL: 'Chili',
                 CN: 'China',
-                CZ: 'Tsjechische',
+                CZ: 'Tsjechische Republiek',
                 DK: 'Denemarken',
                 EE: 'Estland',
                 ES: 'Spanje',
@@ -232,6 +238,7 @@
             countries: {
                 BR: 'Brazilië',
                 CN: 'China',
+                CZ: 'Tsjechische Republiek',
                 DK: 'Denemarken',
                 ES: 'Spanje',
                 FR: 'Frankrijk',
@@ -240,6 +247,7 @@
                 PK: 'Pakistan',
                 RO: 'Roemenië',
                 RU: 'Rusland',
+                SK: 'Slowakije',
                 TH: 'Thailand',
                 US: 'VS',
                 VE: 'Venezuela'
@@ -294,7 +302,7 @@
                 BR: 'Brazilië',
                 CH: 'Zwitserland',
                 CY: 'Cyprus',
-                CZ: 'Tsjechische',
+                CZ: 'Tsjechische Republiek',
                 DE: 'Duitsland',
                 DK: 'Denemarken',
                 EE: 'Estland',
@@ -337,6 +345,7 @@
             countries: {
                 BR: 'Brazilië',
                 CA: 'Canada',
+                CZ: 'Tsjechische Republiek',
                 DK: 'Denemarken',
                 GB: 'Verenigd Koninkrijk',
                 IT: 'Italië',
@@ -346,6 +355,7 @@
                 RU: 'Rusland',
                 SE: 'Zweden',
                 SG: 'Singapore',
+                SK: 'Slowakije',
                 US: 'VS'
             }
         }

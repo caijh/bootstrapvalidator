@@ -20,6 +20,9 @@
             more: 'Kies maximum %s opties',
             between: 'Kies %s - %s opties'
         },
+        color: {
+            'default': 'Geef een geldige kleur'
+        },
         creditCard: {
             'default': 'Geef een geldig creditkaart nummer'
         },
@@ -30,7 +33,10 @@
             'default': 'Geef een geldig CVV nummer'
         },
         date: {
-            'default': 'Geef een geldige datum'
+            'default': 'Geef een geldige datum',
+            min: 'Geef een datum na %s',
+            max: 'Geef een datum voor %s',
+            range: 'Geef een datum tussen %s en %s'
         },
         different: {
             'default': 'Geef een andere waarde '
@@ -85,7 +91,7 @@
                 CR: 'Costa Rica',
                 CV: 'Cape Verde',
                 CY: 'Cyprus',
-                CZ: 'Tsjechië',
+                CZ: 'Tsjechische',
                 DE: 'Duitsland',
                 DK: 'Denemarken',
                 DO: 'Dominicaanse Republiek',
@@ -232,6 +238,7 @@
             countries: {
                 BR: 'Brazilië',
                 CN: 'China',
+                CZ: 'Tsjechische',
                 DK: 'Denemarken',
                 ES: 'Spanje',
                 FR: 'Frankrijk',
@@ -240,6 +247,7 @@
                 PK: 'Pakistan',
                 RO: 'Roemenië',
                 RU: 'Rusland',
+                SK: 'Slowakije',
                 TH: 'Thailand',
                 US: 'VS',
                 VE: 'Venezuela'
@@ -337,6 +345,7 @@
             countries: {
                 BR: 'Brazilië',
                 CA: 'Canada',
+                CZ: 'Tsjechische',
                 DK: 'Denemarken',
                 GB: 'Verenigd Koninkrijk',
                 IT: 'Italië',
@@ -346,6 +355,7 @@
                 RU: 'Rusland',
                 SE: 'Zweden',
                 SG: 'Singapore',
+                SK: 'Slowakije',
                 US: 'VS'
             }
         }

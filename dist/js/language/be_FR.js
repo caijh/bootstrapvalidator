@@ -20,6 +20,9 @@
             more: 'Veuillez choisir au maximum %s options',
             between: 'Veuillez choisir de %s à %s options'
         },
+        color: {
+            'default': 'Veuillez fournir une couleur valide'
+        },
         creditCard: {
             'default': 'Veuillez fournir un numéro de carte de crédit valide'
         },
@@ -30,7 +33,10 @@
             'default': 'Veuillez fournir un code CVV valide'
         },
         date: {
-            'default': 'Veuillez fournir une date valide'
+            'default': 'Veuillez fournir une date valide',
+            'min': 'Veuillez fournir une date supérieure à %s',
+            'max': 'Veuillez fournir une date inférieure à %s',
+            'range': 'Veuillez fournir une date comprise entre %s et %s'
         },
         different: {
             'default': 'Veuillez fournir une valeur différente'
@@ -58,7 +64,7 @@
             'default': 'Veuillez fournir un nombre hexadécimal valide'
         },
         hexColor: {
-            'default': 'Veuillez fournir une couleur hexadécimale valide1'
+            'default': 'Veuillez fournir une couleur hexadécimale valide'
         },
         iban: {
             'default': 'Veuillez fournir un code IBAN valide',
@@ -157,7 +163,7 @@
                 CH: 'Suisse',
                 CL: 'Chili',
                 CN: 'Chine',
-                CZ: 'tchèque',
+                CZ: 'Tchèque',
                 DK: 'Danemark',
                 EE: 'Estonie',
                 ES: 'Espagne',
@@ -232,6 +238,7 @@
             countries: {
                 BR: 'Brésil',
                 CN: 'Chine',
+                CZ: 'Tchèque',
                 DK: 'Danemark',
                 ES: 'Espagne',
                 FR: 'France',
@@ -240,6 +247,7 @@
                 PK: 'Pakistan',
                 RO: 'Roumanie',
                 RU: 'Russie',
+                SK: 'Slovaquie',
                 TH: 'Thaïlande',
                 US: 'USA',
                 VE: 'Venezuela'
@@ -337,6 +345,7 @@
             countries: {
                 BR: 'Brésil',
                 CA: 'Canada',
+                CZ: 'Tchèque',
                 DK: 'Danemark',
                 GB: 'Royaume-Uni',
                 IT: 'Italie',
@@ -346,6 +355,7 @@
                 RU: 'Russie',
                 SE: 'Suède',
                 SG: 'Singapour',
+                SK: 'Slovaquie',
                 US: 'USA'
             }
         }

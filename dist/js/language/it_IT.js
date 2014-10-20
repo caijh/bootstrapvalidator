@@ -5,7 +5,7 @@
      */
     $.fn.bootstrapValidator.i18n = $.extend(true, $.fn.bootstrapValidator.i18n, {
         base64: {
-            'default': 'Please enter a valid base 64 encoded'
+            'default': 'Si prega di inserire un valore codificato in Base 64'
         },
         between: {
             'default': 'Si prega di inserire un valore tra %s e %s',
@@ -20,6 +20,9 @@
             more: 'Si prega di scegliere al massimo l\'opzione %s',
             between: 'Si prega di scegliere l\'opzione tra %s e %s'
         },
+        color: {
+            'default': 'Si prega di inserire un colore valido'
+        },
         creditCard: {
             'default': 'Si prega di inserire un numero di carta di credito valido'
         },
@@ -30,7 +33,10 @@
             'default': 'Si prega di inserire un numero CVV valido'
         },
         date: {
-            'default': 'Si prega di inserire una data valida'
+            'default': 'Si prega di inserire una data valida',
+            min: 'Si prega di inserire una data successiva al %s',
+            max: 'Si prega di inserire una data antecedente il %s',
+            range: 'Si prega di inserire una data compresa tra %s - %s'
         },
         different: {
             'default': 'Si prega di inserire un valore differente'
@@ -157,7 +163,7 @@
                 CH: 'Svizzera',
                 CL: 'Chile',
                 CN: 'Cina',
-                CZ: 'Ceco',
+                CZ: 'Republica Ceca',
                 DK: 'Danimarca',
                 EE: 'Estonia',
                 ES: 'Spagna',
@@ -232,6 +238,7 @@
             countries: {
                 BR: 'Brasile',
                 CN: 'Cina',
+                CZ: 'Republica Ceca',
                 DK: 'Danimarca',
                 ES: 'Spagna',
                 FR: 'Francia',
@@ -240,6 +247,7 @@
                 PK: 'Pakistan',
                 RO: 'Romania',
                 RU: 'Russia',
+                SK: 'Slovacchia',
                 TH: 'Thailandia',
                 US: 'Stati Uniti d\'America',
                 VE: 'Venezuelano'
@@ -294,7 +302,7 @@
                 BR: 'Brasiliano',
                 CH: 'Svizzera',
                 CY: 'Cipro',
-                CZ: 'Repubblica Ceca',
+                CZ: 'Republica Ceca',
                 DE: 'Germania',
                 DK: 'Danimarca',
                 EE: 'Estonia',
@@ -337,6 +345,7 @@
             countries: {
                 BR: 'Brasile',
                 CA: 'Canada',
+                CZ: 'Republica Ceca',
                 DK: 'Danimarca',
                 GB: 'Regno Unito',
                 IT: 'Italia',
@@ -346,6 +355,7 @@
                 RU: 'Russia',
                 SE: 'Svezia',
                 SG: 'Singapore',
+                SK: 'Slovacchia',
                 US: 'Stati Uniti d\'America'
             }
         }

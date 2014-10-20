@@ -1,8 +1,12 @@
-# BootstrapValidator - [v0.5.1](http://bootstrapvalidator.com/getting-started/#download)
+# BootstrapValidator - [v0.5.2](http://bootstrapvalidator.com/getting-started/#download)
 
-[http://bootstrapvalidator.com](http://bootstrapvalidator.com) - The best jQuery plugin to validate form fields. Designed to use with [Bootstrap 3](http://getbootstrap.com)
+[http://bootstrapvalidator.com](http://bootstrapvalidator.com) - The best jQuery plugin to validate form fields, designed to use with [Bootstrap 3](http://getbootstrap.com).
 
-![Screenshot](screenshots/screenshot.png)
+It's developed from scratch by [@nghuuphuoc](http://twitter.com/nghuuphuoc).
+
+__Required__: [jQuery](http://jquery.com/) and [Bootstrap 3](http://getbootstrap.com/)
+
+![Screenshot](screenshots/demo.gif)
 
 ## [Help the project](https://pledgie.com/campaigns/24885)
 
@@ -18,29 +22,30 @@ http://bootstrapvalidator.com/examples/
 
 There are also many examples located in the [demo](demo) directory.
 
+You also can run the ```demo``` locally by:
+
+* Clone the repo: ```git clone https://github.com/nghuuphuoc/bootstrapvalidator.git```
+* Go to the cloned directory and run the command: ```python -m SimpleHTTPServer 8000```
+* Access the demo at ```http://localhost:8000/demo/the_demo_file_here.html```
+
 ## Features
 
 See [official website](http://bootstrapvalidator.com) for the full list of features
 
-## Required
+## Support
 
-* [jQuery](http://jquery.com/)
-* [Bootstrap 3](http://getbootstrap.com/)
- 
+[Submit an issue](https://github.com/nghuuphuoc/bootstrapvalidator/issues) or ask for [commercial support](mailto: phuoc@huuphuoc.me?subject=Commercial support for BootstrapValidator)
+
 ## Download
 
-Latest version: [v0.5.1](http://bootstrapvalidator.com/getting-started/#download), released on 2014-08-22.
-
-For older versions, look at the [Releases](https://github.com/nghuuphuoc/bootstrapvalidator/releases) page.
+* Latest version: [v0.5.2](http://bootstrapvalidator.com/getting-started/), released on 2014-09-25
+* For older versions, look at the [Releases](https://github.com/nghuuphuoc/bootstrapvalidator/releases) page
+* Release History: Look at the [Change Log](CHANGELOG.md)
 
 ## Documentation
 
 * [Official website](http://bootstrapvalidator.com)
-* [Official website source](https://github.com/nghuuphuoc/bootstrapvalidator/tree/gh-pages)
-
-## Release History
-
-Look at the [Change Log](CHANGELOG.md)
+* [Official website source](https://github.com/nghuuphuoc/bootstrapvalidator/tree/docs)
 
 ## Author
 
@@ -50,8 +55,6 @@ The __BootstrapValidator__ plugin is written by Nguyen Huu Phuoc, aka @nghuuphuo
 * [http://github.com/nghuuphuoc](http://github.com/nghuuphuoc)
 
 Big thanks to the [contributors](CONTRIBUTORS.md).
-
-## License
 
 ```
 The MIT License (MIT)

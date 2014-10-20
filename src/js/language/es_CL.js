@@ -20,6 +20,9 @@
             more: 'Por favor elija %s optiones como máximo',
             between: 'Por favor elija de %s a %s opciones'
         },
+        color: {
+            'default': 'Por favor ingrese un color válido'
+        },
         creditCard: {
             'default': 'Por favor ingrese un número válido de tarjeta de crédito'
         },
@@ -30,7 +33,10 @@
             'default': 'Por favor ingrese un número CVV válido'
         },
         date: {
-            'default': 'Por favor ingrese una fecha válida'
+            'default': 'Por favor ingrese una fecha válida',
+            min: 'Por favor ingrese una fecha posterior a %s',
+            max: 'Por favor ingrese una fecha anterior a %s',
+            range: 'Por favor ingrese una fecha en el rango %s - %s'
         },
         different: {
             'default': 'Por favor ingrese un valor distinto'
@@ -157,7 +163,7 @@
                 CH: 'Suiza',
                 CL: 'Chile',
                 CN: 'China',
-                CZ: 'Checa',
+                CZ: 'República Checa',
                 DK: 'Dinamarca',
                 EE: 'Estonia',
                 ES: 'España',
@@ -232,6 +238,7 @@
             countries: {
                 BR: 'Brasil',
                 CN: 'China',
+                CZ: 'República Checa',
                 DK: 'Dinamarca',
                 ES: 'España',
                 FR: 'Francia',
@@ -240,6 +247,7 @@
                 PK: 'Pakistán',
                 RO: 'Rumania',
                 RU: 'Rusa',
+                SK: 'Eslovaquia',
                 TH: 'Tailandia',
                 US: 'Estados Unidos',
                 VE: 'Venezuela'
@@ -294,7 +302,7 @@
                 BR: 'Brasil',
                 CH: 'Suiza',
                 CY: 'Chipre',
-                CZ: 'Checa',
+                CZ: 'República Checa',
                 DE: 'Alemania',
                 DK: 'Dinamarca',
                 EE: 'Estonia',
@@ -337,15 +345,17 @@
             countries: {
                 BR: 'Brasil',
                 CA: 'Canadá',
+                CZ: 'República Checa',
                 DK: 'Dinamarca',
                 GB: 'Reino Unido',
                 IT: 'Italia',
                 MA: 'Marruecos',
                 NL: 'Países Bajos',
                 RO: 'Rumanía',
-                RU: 'Rusa',
+                RU: 'Rusia',
                 SE: 'Suecia',
                 SG: 'Singapur',
+                SK: 'Eslovaquia',
                 US: 'Estados Unidos'
             }
         }

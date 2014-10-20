@@ -2229,6 +2229,661 @@ describe('callback', function() {
     });
 });
 
+describe('color', function() {
+    beforeEach(function() {
+        $([
+            '<form class="form-horizontal" id="colorForm">',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="color" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorMultiple" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorHex" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorRgb" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorRgba" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorHsl" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorHsla" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" class="form-control" name="colorKeyword" />',
+                '</div>',
+            '</form>'
+        ].join('\n')).appendTo('body');
+
+        $('#colorForm').bootstrapValidator({
+            fields: {
+                color: {
+                    validators: {
+                        color: { }
+                    }
+                },
+                colorMultiple: {
+                    validators: {
+                        color: {
+                            type: [
+                                'hex',
+                                'rgb'
+                            ]
+                        }
+                    }
+                },
+                colorHex: {
+                    validators: {
+                        color: {
+                            type: ['hex']
+                        }
+                    }
+                },
+                colorRgb: {
+                    validators: {
+                        color: {
+                            type: ['rgb']
+                        }
+                    }
+                },
+                colorRgba: {
+                    validators: {
+                        color: {
+                            type: ['rgba']
+                        }
+                    }
+                },
+                colorHsl: {
+                    validators: {
+                        color: {
+                            type: ['hsl']
+                        }
+                    }
+                },
+                colorHsla: {
+                    validators: {
+                        color: {
+                            type: ['hsla']
+                        }
+                    }
+                },
+                colorKeyword: {
+                    validators: {
+                        color: {
+                            type: ['keyword']
+                        }
+                    }
+                }
+            }
+        });
+
+        this.bv             = $('#colorForm').data('bootstrapValidator');
+        this.$color         = this.bv.getFieldElements('color');
+        this.$colorMultiple = this.bv.getFieldElements('colorMultiple');
+        this.$colorHex      = this.bv.getFieldElements('colorHex');
+        this.$colorRgb      = this.bv.getFieldElements('colorRgb');
+        this.$colorRgba     = this.bv.getFieldElements('colorRgba');
+        this.$colorHsl      = this.bv.getFieldElements('colorHsl');
+        this.$colorHsla     = this.bv.getFieldElements('colorHsla');
+        this.$colorKeyword  = this.bv.getFieldElements('colorKeyword');
+    });
+
+    afterEach(function() {
+        $('#colorForm').bootstrapValidator('destroy').remove();
+    });
+
+    // Start hsla() tests
+    it('Run hsla() test suite on hsla only field', function() {
+        this.$colorHsla.val('hsla(120,50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla( 120 , 50% , 50%, 1 )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(  120,  50%,       50% ,   1  )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(-120,50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(480,50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,0)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,0.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,.524141)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,2)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,-1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,1.000000000001)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,-0.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,100%,2.3)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(10,-50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(10,50%,-50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('120,50%,50%,1');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,100%,101%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla (120,50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val(' hsla(120,50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120,50%,50%,1) ');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(50%, 50%, 100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120, 50, 100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsla.val('hsla(120, 50%, 100,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+    });
+
+    // Start hsl() tests
+    it('Run hsl() test suite on hsl only field', function() {
+        this.$colorHsl.val('hsl(120,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl( 120 , 50% , 50% )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(  120,  50%,       50%  )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(-120,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(480,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(10,-50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(10,50%,-50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('120,50%,50%');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(120,100%,101%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl (120,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val(' hsl(120,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(120,50%,50%) ');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(50%, 50%, 100%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(120, 50, 100%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorHsl.val('hsl(120, 50%, 100)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+    });
+
+    // Start keyword test
+    it('Run keyword test suite on keyword only field', function() {
+        this.$colorKeyword.val('transparent');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorKeyword.val('transparent');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorKeyword.val('blueviolet red');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorKeyword.val('shady');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorKeyword.val('blueish');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toEqual(false);
+    });
+
+    // Start rgba() test
+    it('Run rgba() test suite on rgba only field', function() {
+        this.$colorRgba.val('rgba(255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba( 255 , 255 , 255 , 1 )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(  255  ,  255    ,       255 ,  1     )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,0)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,0.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,.524141)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,0)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,0.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,.524141)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,100%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,2)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,-1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,1.000000000001)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,-0.5)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,2.3)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(-10,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(-10%,100%,100%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('255,255,255,1');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,256),1');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(100%,100%,101%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba (255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val(' rgba(255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgba.val('rgba(255,255,255,1) ');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+    });
+
+    // Start rgb() test
+    it('Run rgb() test suite on rgb only field', function() {
+        this.$colorRgb.val('rgb(255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb( 255 , 255 , 255 )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(  255,  255,       255  )');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(100%,100%,100%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(255,255,100%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(-10,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(-10%,100%,100%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('255,255,255');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(255,255,256)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(100%,100%,101%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb (255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val(' rgb(255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$colorRgb.val('rgb(255,255,255) ');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+    });
+
+    /* Run individual tests */
+    it('Individual field keyword: accept keyword', function() {
+        this.$colorKeyword.val('blue');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toBeTruthy();
+    });
+
+    it('Individual field keyword: reject rgb', function() {
+        this.$colorKeyword.val('rgb(255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorKeyword')).toEqual(false);
+    });
+
+    it('Individual field hex: accept 6 char hex', function() {
+        this.$colorHex.val('#0000FF');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHex')).toBeTruthy();
+    });
+
+    it('Individual field hex: accept 3 char hex', function() {
+        this.$colorHex.val('#00F');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHex')).toBeTruthy();
+    });
+    it('Individual field hex: reject keyword', function() {
+        this.$colorHex.val('blue');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHex')).toEqual(false);
+    });
+
+    it('Individual field rgb(): accept rgb()', function() {
+        this.$colorRgb.val('rgb(255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toBeTruthy();
+    });
+
+    it('Individual field rgb(): reject hex', function() {
+        this.$colorRgb.val('#0000FF');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgb')).toEqual(false);
+    });
+
+    it('Individual field rgba(): accept rgba()', function() {
+        this.$colorRgba.val('rgba(255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toBeTruthy();
+    });
+
+    it('Individual field rgba(): reject rgb()', function() {
+        this.$colorRgba.val('rgb(255,255,255)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorRgba')).toEqual(false);
+    });
+
+    it('Individual field hsl(): accept hsl()', function() {
+        this.$colorHsl.val('hsl(120,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toBeTruthy();
+    });
+
+    it('Individual field hsl(): reject rgba()', function() {
+        this.$colorHsl.val('rgba(255,255,255,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsl')).toEqual(false);
+    });
+
+    it('Individual field hsla(): accept hsla()', function() {
+        this.$colorHsla.val('hsla(120,50%,50%,1)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toBeTruthy();
+    });
+
+    it('Individual field hsla(): reject hsl()', function() {
+        this.$colorHsla.val('hsl(120,50%,50%)');
+        this.bv.validate();
+        expect(this.bv.isValidField('colorHsla')).toEqual(false);
+    });
+
+    /* Run validation message tests */
+    it('Validation message tests', function() {
+        this.$color.val('notacolor');
+        this.bv.validate();
+        expect(this.bv.isValidField('color')).toEqual(false);
+        expect(this.bv.getMessages(this.$color, 'color')[0]).toEqual($.fn.bootstrapValidator.i18n.color.default);
+    });
+});
+
 describe('creditCard', function() {
     // Get the fake credit card number at http://www.getcreditcardnumbers.com/
 
@@ -2351,6 +3006,18 @@ describe('creditCard', function() {
     });
 });
 
+function getDate(value, validator, $field) {
+    return validator.getFieldElements('date').val();
+};
+
+TestSuite = $.extend({}, TestSuite, {
+    Date: {
+        getDate: function(value, validator, $field) {
+            return validator.getFieldElements('date').val();
+        }
+    }
+});
+
 describe('date', function() {
     beforeEach(function() {
         $([
@@ -2359,13 +3026,25 @@ describe('date', function() {
                 '<div class="form-group">',
                     '<input type="text" name="date" data-bv-date />',
                 '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="minDate" data-bv-date data-bv-date-min="" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="maxDate" data-bv-date data-bv-date-max="" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="range" data-bv-date data-bv-date-min="" data-bv-date-max="" />',
+                '</div>',
             '</form>'
         ].join('\n')).appendTo('body');
 
         $('#dateForm').bootstrapValidator();
 
-        this.bv    = $('#dateForm').data('bootstrapValidator');
-        this.$date = this.bv.getFieldElements('date');
+        this.bv       = $('#dateForm').data('bootstrapValidator');
+        this.$date    = this.bv.getFieldElements('date');
+        this.$minDate = this.bv.getFieldElements('minDate');
+        this.$maxDate = this.bv.getFieldElements('maxDate');
+        this.$range   = this.bv.getFieldElements('range');
     });
 
     afterEach(function() {
@@ -2538,6 +3217,627 @@ describe('date', function() {
         this.$date.val('2014/08/17 07:30:00');
         this.bv.validate();
         expect(this.bv.isValid()).toBeTruthy();
+    });
+
+    // min test suite
+    it('min date format YYYY/MM/DD', function() {
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+        this.bv.updateOption('minDate', 'date', 'min', '2010/01/01');
+
+        this.$minDate.val('2010/01/02');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('2010/01/002'); // day prefexid by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('2009/12/31');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2000/01/01');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+    });
+
+    it('min date format YYYY-MM-DD', function() {
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY-MM-DD');
+        this.bv.updateOption('minDate', 'date', 'min', '2010-01-01');
+
+        this.$minDate.val('2010-01-02');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('2010-001-02'); // month prefexid by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2014-08-17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('2009-12-31');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2000-01-01');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+    });
+
+    it('min date format DD/MM/YYYY', function() {
+        this.bv.updateOption('minDate', 'date', 'format', 'DD/MM/YYYY');
+        this.bv.updateOption('minDate', 'date', 'min', '01/01/2010');
+
+        this.$minDate.val('02/01/2010');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('17/08/2014');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('02/01/02010'); // year prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('31/12/2009');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('01/01/2000');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+    });
+
+    it('min date format YYYY-MM-DD h:m:s', function() {
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY-MM-DD h:m:s');
+        this.bv.updateOption('minDate', 'date', 'min', '2010-01-01 01:00:00');
+
+        this.bv.resetForm();
+        this.$minDate.val('2010-01-01 01:00:01');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.$minDate.val('2010-01-02 01:00:01');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('2014-08-17 12:00:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$minDate.val('2009-12-31 00:00:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2009-12-31 010:00:00'); // hours prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2009-12-31 10:001:00'); // minutes prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2009-12-31 10:01:012'); // seconds prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2009-12-31 00:00:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$minDate.val('2000-01-01 23:00:12');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toEqual(false);
+    });
+
+    // max test suite
+    it('max date format YYYY/MM/DD', function() {
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+        this.bv.updateOption('maxDate', 'date', 'max', '2014/09/10');
+
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('02014/012/031'); // year, month or day prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014/12/31');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('2015/01/01');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+    });
+
+    it('max date format YYYY-MM-DD', function() {
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY-MM-DD');
+        this.bv.updateOption('maxDate', 'date', 'max', '2014-09-10');
+
+        this.$maxDate.val('2014-09-09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014-08-17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('02014-012-031');  // year, month or day prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014-12-31');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('2015-01-01');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+    });
+
+    it('max date format DD/MM/YYYY', function() {
+        this.bv.updateOption('maxDate', 'date', 'format', 'DD/MM/YYYY');
+        this.bv.updateOption('maxDate', 'date', 'max', '10/09/2014');
+
+        this.$maxDate.val('09/09/2014');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('17/08/2014');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('031/012/02014'); // year, month or day prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('31/12/2014');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('01/01/2015');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+    });
+
+    it('max date format YYYY-MM-DD h:m:s', function() {
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY-MM-DD h:m:s');
+        this.bv.updateOption('maxDate', 'date', 'max', '2014-09-10 01:00:00');
+
+        this.$maxDate.val('2014-09-09 01:00:01');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014-08-17 12:00:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014-09-09 001:001:001'); // hours, minutes or seconds prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('2014-12-31 00:00:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$maxDate.val('2015-01-01 23:00:12');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toEqual(false);
+    });
+
+    // range test suite
+    it('range format YYYY/MM/DD', function() {
+        this.bv.updateOption('range', 'date', 'format', 'YYYY/MM/DD');
+        this.bv.updateOption('range', 'date', 'min', '2010/09/10');
+        this.bv.updateOption('range', 'date', 'max', '2014/09/10');
+
+        this.$range.val('2011/01/01');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('02014/001/031'); // year, month or day prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('2010/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('2014/09/11');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+    });
+
+    it('range format YYYY-MM-DD', function() {
+        this.bv.updateOption('range', 'date', 'format', 'YYYY-MM-DD');
+        this.bv.updateOption('range', 'date', 'min', '2010-09-10');
+        this.bv.updateOption('range', 'date', 'max', '2014-09-10');
+
+        this.$range.val('2012-01-12');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('2014-09-09');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('02014-003-031');  // year, month or day prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('2009-12-31');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('2015-01-01');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+    });
+
+    it('range format DD/MM/YYYY', function() {
+        this.bv.updateOption('range', 'date', 'format', 'DD/MM/YYYY');
+        this.bv.updateOption('range', 'date', 'min', '10/09/2010');
+        this.bv.updateOption('range', 'date', 'max', '10/09/2014');
+
+        this.$range.val('11/11/2011');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('17/08/2014');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('031/012/02013'); // year, month or day prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('31/01/2010');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('25/03/2015');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+    });
+
+    it('range format YYYY-MM-DD h:m:s', function() {
+        this.bv.updateOption('range', 'date', 'format', 'YYYY-MM-DD h:m:s');
+        this.bv.updateOption('range', 'date', 'min', '2010-05-15 22:00:00');
+        this.bv.updateOption('range', 'date', 'max', '2015-05-15 22:00:00');
+
+        this.$range.val('2012-07-17 01:00:01');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('2013-08-17 12:00:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$range.val('2011-06-19 001:001:001'); // hours, minutes or seconds prefixed by 0 not allowed
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('2008-11-27 23:15:00');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+
+        this.bv.resetForm();
+        this.$range.val('2015-05-15 22:00:01');
+        this.bv.validate();
+        expect(this.bv.isValidField('range')).toEqual(false);
+    });
+
+    // dynamic min option
+    it('dynamic min: name of field', function() {
+        this.$minDate.attr('data-bv-date-min', 'date');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeFalsy();
+    });
+
+    it('dynamic min: callback declarative function', function() {
+        this.$minDate.attr('data-bv-date-min', 'getDate');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/10/01');
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeFalsy();
+    });
+
+    it('dynamic min: callback declarative function()', function() {
+        this.$minDate.attr('data-bv-date-min', 'getDate()');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/10/01');
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeFalsy();
+    });
+
+    it('dynamic min: callback declarative A.B.C', function() {
+        this.$minDate.attr('data-bv-date-min', 'TestSuite.Date.getDate');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/10/01');
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeFalsy();
+    });
+
+    it('dynamic min: callback declarative A.B.C()', function() {
+        this.$minDate.attr('data-bv-date-min', 'TestSuite.Date.getDate()');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/10/01');
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeFalsy();
+    });
+
+    it('dynamic min: callback programmatically', function() {
+        this.$minDate.removeAttr('data-bv-date-min');
+        this.bv.destroy();
+        this.bv = $('#dateForm')
+                        .bootstrapValidator({
+                            fields: {
+                                minDate: {
+                                    validators: {
+                                        date: {
+                                            min: function(value, validator, $field) {
+                                                return getDate(value, validator, $field);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                        .data('bootstrapValidator');
+        this.bv.updateOption('minDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2014/09/08');
+        this.$minDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/10/01');
+        this.$minDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('minDate')).toBeFalsy();
+    });
+
+    // dynamic max option
+    it('dynamic max: name of field', function() {
+        this.$maxDate.attr('data-bv-date-max', 'date');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2015/01/01');
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/01/01');
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeFalsy();
+    });
+
+    it('dynamic max: callback declarative function', function() {
+        this.$maxDate.attr('data-bv-date-max', 'getDate');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2015/01/01');
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/01/01');
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeFalsy();
+    });
+
+    it('dynamic max: callback declarative function()', function() {
+        this.$maxDate.attr('data-bv-date-max', 'getDate()');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2015/01/01');
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/01/01');
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeFalsy();
+    });
+
+    it('dynamic max: callback declarative A.B.C', function() {
+        this.$maxDate.attr('data-bv-date-max', 'TestSuite.Date.getDate');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2015/01/01');
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/01/01');
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeFalsy();
+    });
+
+    it('dynamic max: callback declarative A.B.C()', function() {
+        this.$maxDate.attr('data-bv-date-max', 'TestSuite.Date.getDate()');
+        this.bv.destroy();
+        this.bv = $('#dateForm').bootstrapValidator().data('bootstrapValidator');
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2015/01/01');
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/01/01');
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeFalsy();
+    });
+
+    it('dynamic max: callback programmatically', function() {
+        this.$maxDate.removeAttr('data-bv-date-max');
+        this.bv.destroy();
+        this.bv = $('#dateForm')
+                        .bootstrapValidator({
+                            fields: {
+                                maxDate: {
+                                    validators: {
+                                        date: {
+                                            max: function(value, validator, $field) {
+                                                return getDate(value, validator, $field);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                        .data('bootstrapValidator');
+        this.bv.updateOption('maxDate', 'date', 'format', 'YYYY/MM/DD');
+
+        this.$date.val('2015/01/01');
+        this.$maxDate.val('2014/09/09');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$date.val('2014/01/01');
+        this.$maxDate.val('2014/08/17');
+        this.bv.validate();
+        expect(this.bv.isValidField('maxDate')).toBeFalsy();
     });
 });
 
@@ -4686,6 +5986,7 @@ describe('phone', function() {
                     '<select class="form-control" name="country">',
                         '<option value="BR">Brazil</option>',
                         '<option value="CN">China</option>',
+                        '<option value="CZ">Czech Republic</option>',
                         '<option value="DK">Denmark</option>',
                         '<option value="ES">Spain</option>',
                         '<option value="FR">France</option>',
@@ -4694,6 +5995,7 @@ describe('phone', function() {
                         '<option value="PK">Pakistan</option>',
                         '<option value="RO">Romania</option>',
                         '<option value="RU">Russia</option>',
+                        '<option value="SK">Slovakia</option>',
                         '<option value="TH">Thailand</option>',
                         '<option value="US">USA</option>',
                         '<option value="VE">Venezuela</option>',
@@ -4777,6 +6079,35 @@ describe('phone', function() {
             this.$phone.val(validSamples[i]);
             this.bv.validate();
             expect(this.bv.isValid()).toBeTruthy();
+        }
+    });
+
+    it('Czech Republic phone number', function() {
+        this.bv.updateOption('phone', 'phone', 'country', 'CZ');
+
+        // Valid samples
+        var validSamples = [
+            '00420123456789', '00420 123456789', '00420 123 456 789', '00 420 123 456 789',
+            '+420123456789', '+420 123456789', '+420 123 456 789', '123456789', '123 456 789'
+        ];
+        for (var i in validSamples) {
+            this.bv.resetForm();
+            this.$phone.val(validSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toBeTruthy();
+        }
+
+        // Invalid samples
+        var invalidSamples = [
+            '420123456789', '420 123456789', '420 123 456 789', '00421123456789', '00421 123456789',
+            '00421 123 456 789', '00 421 123 456 789', '+421123456789', '+421 123456789',
+            '+421 123 456 789'
+        ];
+        for (i in invalidSamples) {
+            this.bv.resetForm();
+            this.$phone.val(invalidSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toEqual(false);
         }
     });
 
@@ -4951,6 +6282,218 @@ describe('phone', function() {
             this.bv.validate();
             expect(this.bv.isValid()).toBeTruthy();
         }
+    });
+
+    it('Slovakia phone number', function() {
+        this.bv.updateOption('phone', 'phone', 'country', 'SK');
+
+        // Valid samples
+        var validSamples = [
+            '00420123456789', '00420 123456789', '00420 123 456 789', '00 420 123 456 789',
+            '+420123456789', '+420 123456789', '+420 123 456 789', '123456789', '123 456 789'
+        ];
+        for (var i in validSamples) {
+            this.bv.resetForm();
+            this.$phone.val(validSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toBeTruthy();
+        }
+
+        // Invalid samples
+        var invalidSamples = [
+            '420123456789', '420 123456789', '420 123 456 789', '00421123456789', '00421 123456789',
+            '00421 123 456 789', '00 421 123 456 789', '+421123456789', '+421 123456789',
+            '+421 123 456 789'
+        ];
+        for (i in invalidSamples) {
+            this.bv.resetForm();
+            this.$phone.val(invalidSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toEqual(false);
+        }
+    });
+});
+
+describe('stringLength', function() {
+    beforeEach(function() {
+        $([
+            '<form class="form-horizontal" id="stringLengthForm">',
+                '<div class="form-group">',
+                    '<input type="text" name="textCharMaxLength" data-bv-stringlength data-bv-stringlength-max="10" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<textarea name="textareaCharMaxLength" data-bv-stringlength data-bv-stringlength-max="10"></textarea>',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="textUTF8BytesMaxLength" data-bv-stringlength data-bv-stringlength-utf8bytes="true" data-bv-stringlength-max="10" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<textarea name="textareaUTF8BytesMaxLength" data-bv-stringlength data-bv-stringlength-utf8bytes="true" data-bv-stringlength-max="10"></textarea>',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="textCharMinLength" data-bv-stringlength data-bv-stringlength-min="5" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<textarea name="textareaCharMinLength" data-bv-stringlength data-bv-stringlength-min="5"></textarea>',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="textUTF8BytesMinLength" data-bv-stringlength data-bv-stringlength-utf8bytes="true" data-bv-stringlength-min="5" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<textarea name="textareaUTF8BytesMinLength" data-bv-stringlength data-bv-stringlength-utf8bytes="true" data-bv-stringlength-min="5"></textarea>',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="textCharMinMaxLength" data-bv-stringlength data-bv-stringlength-min="5" data-bv-stringlength-max="10" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<textarea name="textareaCharMinMaxLength" data-bv-stringlength data-bv-stringlength-min="5" data-bv-stringlength-max="10"></textarea>',
+                '</div>',
+                '<div class="form-group">',
+                    '<input type="text" name="textUTF8BytesMinMaxLength" data-bv-stringlength data-bv-stringlength-utf8bytes="true" data-bv-stringlength-min="5" data-bv-stringlength-max="10" />',
+                '</div>',
+                '<div class="form-group">',
+                    '<textarea name="textareaUTF8BytesMinMaxLength" data-bv-stringlength data-bv-stringlength-utf8bytes="true" data-bv-stringlength-min="5" data-bv-stringlength-max="10"></textarea>',
+                '</div>',
+            '</form>'
+        ].join('\n')).appendTo('body');
+
+        $('#stringLengthForm').bootstrapValidator();
+
+        this.bv                             = $('#stringLengthForm').data('bootstrapValidator');
+        this.$textCharMaxLength             = this.bv.getFieldElements('textCharMaxLength');
+        this.$textareaCharMaxLength         = this.bv.getFieldElements('textareaCharMaxLength');
+        this.$textUTF8BytesMaxLength        = this.bv.getFieldElements('textUTF8BytesMaxLength');
+        this.$textareaUTF8BytesMaxLength    = this.bv.getFieldElements('textareaUTF8BytesMaxLength');
+        this.$textCharMinLength             = this.bv.getFieldElements('textCharMinLength');
+        this.$textareaCharMinLength         = this.bv.getFieldElements('textareaCharMinLength');
+        this.$textUTF8BytesMinLength        = this.bv.getFieldElements('textUTF8BytesMinLength');
+        this.$textareaUTF8BytesMinLength    = this.bv.getFieldElements('textareaUTF8BytesMinLength');
+        this.$textCharMinMaxLength          = this.bv.getFieldElements('textCharMinMaxLength');
+        this.$textareaCharMinMaxLength      = this.bv.getFieldElements('textareaCharMinMaxLength');
+        this.$textUTF8BytesMinMaxLength     = this.bv.getFieldElements('textUTF8BytesMinMaxLength');
+        this.$textareaUTF8BytesMinMaxLength = this.bv.getFieldElements('textareaUTF8BytesMinMaxLength');
+    });
+
+    afterEach(function() {
+        $('#stringLengthForm').bootstrapValidator('destroy').remove();
+    });
+
+    it('Valid max lengths', function() {
+        this.$textCharMaxLength.val('123456789♥');
+        this.$textareaCharMaxLength.val('123456789♥');
+        this.$textUTF8BytesMaxLength.val('1234567♥');
+        this.$textareaUTF8BytesMaxLength.val('1234567♥');
+        this.bv.validate();
+        expect(this.bv.isValid()).toBeTruthy();
+    });
+
+    it('Valid min lengths', function() {
+        this.$textCharMinLength.val('1234♥');
+        this.$textareaCharMinLength.val('1234♥');
+        this.$textUTF8BytesMinLength.val('12♥');
+        this.$textareaUTF8BytesMinLength.val('12♥');
+        this.bv.validate();
+        expect(this.bv.isValid()).toBeTruthy();
+    });
+
+    it('Valid min and max lengths', function() {
+        this.$textCharMinMaxLength.val('1234♥');
+        this.$textareaCharMinMaxLength.val('1234♥');
+        this.$textUTF8BytesMinMaxLength.val('12♥');
+        this.$textareaUTF8BytesMinMaxLength.val('12♥');
+        this.bv.validate();
+        expect(this.bv.isValid()).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$textCharMinMaxLength.val('123456789♥');
+        this.$textareaCharMinMaxLength.val('123456789♥');
+        this.$textUTF8BytesMinMaxLength.val('1234567♥');
+        this.$textareaUTF8BytesMinMaxLength.val('1234567♥');
+        this.bv.validate();
+        expect(this.bv.isValid()).toBeTruthy();
+    });
+
+    it('Invalid max lengths', function() {
+        this.$textCharMaxLength.val('1234567890♥');           // 11 chars when max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaCharMaxLength.val('1234567890♥');       // 11 chars when max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textUTF8BytesMaxLength.val('12345678♥');        // 11 UTF-8 bytes when max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaUTF8BytesMaxLength.val('12345678♥');    // 11 UTF-8 bytes when max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+    });
+
+    it('Invalid min lengths', function() {
+        this.$textCharMinLength.val('123♥');                  // 4 chars when min is 5
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaCharMinLength.val('123♥');              // 4 chars when min is 5
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textUTF8BytesMinLength.val('1♥');               // 4 UTF-8 bytes when min is 5
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaUTF8BytesMinLength.val('1♥');           // 4 UTF-8 bytes when min is 5
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+    });
+
+    it('Invalid min and max lengths', function() {
+        this.$textCharMinMaxLength.val('123♥');               // 4 chars when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaCharMinMaxLength.val('123♥');           // 4 chars when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textUTF8BytesMinMaxLength.val('1♥');            // 4 UTF-8 bytes when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaUTF8BytesMinMaxLength.val('1♥');        // 4 UTF-8 bytes when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textCharMinMaxLength.val('1234567890♥');        // 11 chars when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaCharMinMaxLength.val('1234567890♥');    // 11 chars when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textUTF8BytesMinMaxLength.val('12345678♥');     // 11 UTF-8 bytes when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+
+        this.bv.resetForm();
+        this.$textareaUTF8BytesMinMaxLength.val('12345678♥'); // 11 UTF-8 bytes when min is 5 and max is 10
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
     });
 });
 
@@ -5930,10 +7473,12 @@ describe('zipCode', function() {
                             '<option value="">Select a country</option>',
                             '<option value="US">United States</option>',
                             '<option value="CA">Canada</option>',
+                            '<option value="CZ">Czech Republic</option>',
                             '<option value="DK">Denmark</option>',
                             '<option value="IT">Italy</option>',
                             '<option value="NL">Netherlands</option>',
                             '<option value="SE">Sweden</option>',
+                            '<option value="SK">Slovakia</option>',
                             '<option value="GB">United Kingdom</option>',
                         '</select>',
                     '</div>',
@@ -5960,17 +7505,6 @@ describe('zipCode', function() {
 
     afterEach(function() {
         $('#zipCodeForm').bootstrapValidator('destroy').remove();
-    });
-
-    it('country code US', function() {
-        this.$zipCode.val('12345');
-        this.bv.validate();
-        expect(this.bv.isValid()).toBeTruthy();
-
-        this.bv.resetForm();
-        this.$zipCode.val('123');
-        this.bv.validate();
-        expect(this.bv.isValid()).toEqual(false);
     });
 
     it('country code updateOption()', function() {
@@ -6107,5 +7641,60 @@ describe('zipCode', function() {
         this.bv.validate();
         expect(this.bv.isValid()).toEqual(false);
         expect(this.bv.getMessages(this.$zipCode, 'zipCode')[0]).toEqual($.fn.bootstrapValidator.helpers.format($.fn.bootstrapValidator.i18n.zipCode.countryNotSupported, 'NOT_SUPPORTED'));
+    });
+
+    it('US zipcode', function() {
+        this.$zipCode.val('12345');
+        this.bv.validate();
+        expect(this.bv.isValid()).toBeTruthy();
+
+        this.bv.resetForm();
+        this.$zipCode.val('123');
+        this.bv.validate();
+        expect(this.bv.isValid()).toEqual(false);
+    });
+
+    it('Czech Republic postal code', function() {
+        this.bv.updateOption('zc', 'zipCode', 'country', 'CZ');
+
+        // Valid samples
+        var validSamples = ['12345', '123 45'];
+        for (var i in validSamples) {
+            this.bv.resetForm();
+            this.$zipCode.val(validSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toBeTruthy();
+        }
+
+        // Invalid samples
+        var invalidSamples = ['12 345', '123456', '1 2345', '1234 5', '12 3 45'];
+        for (i in invalidSamples) {
+            this.bv.resetForm();
+            this.$zipCode.val(invalidSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toEqual(false);
+        }
+    });
+
+    it('Slovakia postal code', function() {
+        this.bv.updateOption('zc', 'zipCode', 'country', 'SK');
+
+        // Valid samples
+        var validSamples = ['12345', '123 45'];
+        for (var i in validSamples) {
+            this.bv.resetForm();
+            this.$zipCode.val(validSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toBeTruthy();
+        }
+
+        // Invalid samples
+        var invalidSamples = ['12 345', '123456', '1 2345', '1234 5', '12 3 45'];
+        for (i in invalidSamples) {
+            this.bv.resetForm();
+            this.$zipCode.val(invalidSamples[i]);
+            this.bv.validate();
+            expect(this.bv.isValid()).toEqual(false);
+        }
     });
 });
